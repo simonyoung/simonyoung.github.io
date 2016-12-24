@@ -2,4 +2,4 @@
 layout: default
 ---
 
-**No.**
+Nothing to see here.
