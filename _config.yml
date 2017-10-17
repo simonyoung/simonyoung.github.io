@@ -1,7 +1,7 @@
 # Site settings
-title: Page Not Found
-tag_text: Page Not Found
-description: Page Not Found
+title: Hello
+tag_text: Hello
+description: Hello. I'm Simon Young.
 
 # Build settings
 markdown: kramdown
