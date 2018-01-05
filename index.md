@@ -2,7 +2,7 @@
 layout: default
 ---
 
-I'm **Simon Young**. I'm currently Head of Product Management for **shop.LEGO.com** at [The LEGO&reg; Group](https://www.lego.com).
+I'm **Simon Young**. I'm currently Senior Engineering Manager for **shop.LEGO.com** at [The LEGO&reg; Group](https://www.lego.com).
 
 You can find me online in the following places...
 
