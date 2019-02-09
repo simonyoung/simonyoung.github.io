@@ -10,4 +10,4 @@ You can find me online in the following places...
 * [LinkedIn](https://uk.linkedin.com/in/simonyounguk)
 * [Medium](https://medium.com/@simonyoung_uk)
 
-All views expressed are my own and not those of my employer. [Everything is Awesome](https://www.youtube.com/watch?v=cCKONHUigVk).
+All views expressed are my own.
