@@ -8,5 +8,6 @@ You can find me online in the following places...
 
 * [Twitter](https://twitter.com/simon180)
 * [LinkedIn](https://uk.linkedin.com/in/simonyounguk)
+* [Medium](https://medium.com/@simonyoung_uk)
 
 All views expressed are my own.
