@@ -1,0 +1,21 @@
+---
+const { frontmatter } = Astro.props;
+---
+<html>
+  <head>
+    <title>Simon Young | {frontmatter.title}</title>
+  </head>
+  <body>
+    <h1><a href="/">Simon Young</a></h1>
+    
+    <h2>{frontmatter.title}</h2>
+    <props>{frontmatter.author} on {frontmatter.date}</p>
+    
+    <slot />
+
+    <footer>
+		<p>&copy; Simon Young, 1999-2024.</p>
+	</footer>
+
+  </body>
+</html>
