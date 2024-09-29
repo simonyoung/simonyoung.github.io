@@ -1,21 +1,28 @@
 ---
 const { frontmatter } = Astro.props;
 ---
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simon Young | {frontmatter.title}</title>
   </head>
   <body>
-    <h1><a href="/">Simon Young</a></h1>
+    <header>
+      <h1><a href="/" aria-label="Home">Simon Young</a></h1>
+    </header>
     
-    <h2>{frontmatter.title}</h2>
-    <props>{frontmatter.author} on {frontmatter.date}</p>
-    
-    <slot />
+    <main>
+      <article>
+        <h2>{frontmatter.title}</h2>
+        <p>{frontmatter.author} on {frontmatter.date}</p>
+        
+        <slot />
+      </article>
+    </main>
 
     <footer>
-		<p>&copy; Simon Young, 1999-2024.</p>
-	</footer>
-
+      <p>&copy; Simon Young, 1999-2024.</p>
+    </footer>
   </body>
 </html>
