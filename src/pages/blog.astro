@@ -1,30 +1,74 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const posts = await Astro.glob('./blog/*.md');
+posts.sort((a, b) => new Date(b.frontmatter.date).getTime() - new Date(a.frontmatter.date).getTime());
+
+// Format dates for display
+const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Simon Young</title>
-	</head>
-	<body>
-		<header>
-			<h1><a href="/">Simon Young</a></h1>
-		</header>
-
-		<main>
-			<h2>Blog</h2>
-
-			<ul>
-				<li><a href="/blog/leadership-with-shared-purpose">Leadership with Shared Purpose</a> (September 30, 2020)</li>
-				<li><a href="/blog/on-leading-engineering-teams">On Leading Engineering Teams</a> (December 10, 2018)</li>
-			</ul>
-		</main>
-
-		<footer>
-			<p>&copy; Simon Young, 1999-2024. </p>
-		</footer>
-	</body>
-</html>
+<BaseLayout title="Blog | Simon Young" description="Articles and thoughts on software engineering leadership">
+  <div class="slate-container py-12">
+    <header class="slate-header mb-12">
+      <h1 class="slate-title">Blog</h1>
+      <p class="slate-subtitle">Thoughts on software engineering leadership and team building</p>
+    </header>
+    
+    <div class="divide-y divide-gray-200 dark:divide-gray-800">
+      {posts.map((post) => (
+        <article class="py-8 first:pt-0">
+          <div class="space-y-2">
+            <h2 class="text-2xl font-bold tracking-tight">
+              <a href={post.url} class="text-gray-900 dark:text-gray-100 hover:text-primary-600 dark:hover:text-primary-400">
+                {post.frontmatter.title}
+              </a>
+            </h2>
+            
+            <div class="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+              {post.frontmatter.author && (
+                <span>{post.frontmatter.author}</span>
+              )}
+              {post.frontmatter.date && (
+                <>
+                  <span>•</span>
+                  <time datetime={post.frontmatter.date}>
+                    {formatDate(post.frontmatter.date)}
+                  </time>
+                </>
+              )}
+            </div>
+            
+            {post.frontmatter.description && (
+              <p class="text-gray-600 dark:text-gray-400 line-clamp-2">
+                {post.frontmatter.description}
+              </p>
+            )}
+          </div>
+          
+          <div class="mt-4">
+            <a href={post.url} class="slate-link text-sm inline-flex items-center">
+              Read more
+              <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+    
+    {posts.length === 0 && (
+      <div class="py-8 text-center">
+        <p class="text-gray-600 dark:text-gray-400">No blog posts found.</p>
+      </div>
+    )}
+  </div>
+</BaseLayout>
