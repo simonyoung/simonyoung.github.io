@@ -1,40 +1,46 @@
 ---
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Simon Young</title>
-	</head>
-	<body>
-		<header>
-			<h1><a href="/">Simon Young</a></h1>
-		</header>
-
-		<main>
-			<p>I’m Simon, an experienced software engineering leader currently working at <a href="https://lego.com/">The LEGO Group</a>.</p>
-
-			<ul>
-				<li>More than 25 years of experience in all aspects of software engineering and architecture</li>
-				<li>Senior Director of Engineering for Shopper Technology at the LEGO Group, leading a 100+ person software engineering team</li>
-			</ul>
-
-			<p>Find me on <a href="https://www.linkedin.com/in/simonyounguk/">LinkedIn</a> 🤘</p>
-
-			<section aria-labelledby="articles-heading">
-				<h2 id="articles-heading">Articles</h2>
-				<ul>
-					<li><a href="/blog/leadership-with-shared-purpose">Leadership with Shared Purpose</a> (September 30, 2020)</li>
-					<li><a href="/blog/on-leading-engineering-teams">On Leading Engineering Teams</a> (December 10, 2018)</li>
-				</ul>
-			</section>
-		</main>
-
-		<footer>
-			<p>&copy; Simon Young, 1999-2024.</p>
-		</footer>
-	</body>
-</html>
+<BaseLayout title="Simon Young | Software Engineering Leader">
+  <div class="slate-container py-12">
+    <section class="mb-16">
+      <div class="prose dark:prose-invert lg:prose-lg">
+        <p class="text-xl leading-relaxed">I'm Simon, an experienced software engineering leader currently working at <a href="https://lego.com/" class="slate-link">The LEGO Group</a>.</p>
+        
+        <ul class="mt-6 space-y-2">
+          <li>More than 25 years of experience in all aspects of software engineering and architecture</li>
+          <li>Senior Director of Engineering for Shopper Technology at the LEGO Group, leading a 100+ person software engineering team</li>
+        </ul>
+        
+        <p class="mt-6">Find me on <a href="https://www.linkedin.com/in/simonyounguk/" class="slate-link">LinkedIn</a> 🤘</p>
+      </div>
+    </section>
+    
+    <section aria-labelledby="articles-heading" class="mb-8">
+      <h2 id="articles-heading" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">Recent Articles</h2>
+      <ul class="space-y-4">
+        <li class="border-b border-gray-100 dark:border-gray-800 pb-4">
+          <a href="/blog/leadership-with-shared-purpose" class="group">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Leadership with Shared Purpose</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">September 30, 2020</p>
+          </a>
+        </li>
+        <li class="border-b border-gray-100 dark:border-gray-800 pb-4">
+          <a href="/blog/on-leading-engineering-teams" class="group">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">On Leading Engineering Teams</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">December 10, 2018</p>
+          </a>
+        </li>
+      </ul>
+      <div class="mt-8">
+        <a href="/blog" class="slate-link inline-flex items-center">
+          View all articles
+          <svg xmlns="http://www.w3.org/2000/svg" class="ml-1 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,6 +1,28 @@
 ---
+const navItems = [
+  { label: "Home", href: "/" },
+  { label: "Blog", href: "/blog" },
+];
 ---
 
-<header>
-    <h1><a href="/">Simon Young</a></h1>
+<header class="border-b border-gray-200 dark:border-gray-800">
+  <div class="slate-container py-6">
+    <nav class="flex items-center justify-between">
+      <a href="/" class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+        Simon Young
+      </a>
+      <ul class="flex items-center gap-6">
+        {navItems.map((item) => (
+          <li>
+            <a 
+              href={item.href}
+              class="text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white"
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 </header>

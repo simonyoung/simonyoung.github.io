@@ -1,28 +1,34 @@
 ---
+import BaseLayout from './BaseLayout.astro';
+import { format } from 'date-fns';
+
 const { frontmatter } = Astro.props;
+
+const formattedDate = frontmatter.date 
+  ? format(new Date(frontmatter.date), 'MMMM d, yyyy')
+  : '';
 ---
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simon Young | {frontmatter.title}</title>
-  </head>
-  <body>
-    <header>
-      <h1><a href="/" aria-label="Home">Simon Young</a></h1>
+
+<BaseLayout title={`${frontmatter.title} | Simon Young`} description={frontmatter.description}>
+  <article class="slate-container py-10">
+    <header class="mb-8">
+      <a href="/blog" class="slate-link text-sm font-medium mb-4 inline-block">
+        ← Back to Blog
+      </a>
+      <h1 class="slate-title mb-3">{frontmatter.title}</h1>
+      <div class="flex items-center text-gray-600 dark:text-gray-400">
+        {frontmatter.author && <span class="mr-2">{frontmatter.author}</span>}
+        {formattedDate && (
+          <>
+            <span class="mx-2">•</span>
+            <time datetime={frontmatter.date}>{formattedDate}</time>
+          </>
+        )}
+      </div>
     </header>
     
-    <main>
-      <article>
-        <h2>{frontmatter.title}</h2>
-        <p>{frontmatter.author} on {frontmatter.date}</p>
-        
-        <slot />
-      </article>
-    </main>
-
-    <footer>
-      <p>&copy; Simon Young, 1999-2024.</p>
-    </footer>
-  </body>
-</html>
+    <div class="prose dark:prose-invert prose-slate lg:prose-lg mx-auto">
+      <slot />
+    </div>
+  </article>
+</BaseLayout>
