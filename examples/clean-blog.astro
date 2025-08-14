@@ -1,0 +1,39 @@
+---
+// Example of CLEAN code without redundant type casting
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+
+// Clean approach - proper typing without redundant casts
+const posts = await getCollection('blog');
+const formatDate = (date: Date) =>
+  date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout title="Blog | Simon Young">
+  <div class="container">
+    <div class="grid">
+      {posts.map((p: any) => {
+        // ✅ CORRECT: Use parameter directly, no redundant assignment
+        const href = `/blog/${p.slug}/`;
+        return (
+          <article>
+            <h2>
+              <a href={href}>
+                {p.data.title}
+              </a>
+            </h2>
+            <div>
+              {p.data.author && <span>{p.data.author}</span>}
+              <time datetime={p.data.date.toISOString()}>
+                {formatDate(p.data.date)}
+              </time>
+            </div>
+            {p.data.description && (
+              <p>{p.data.description}</p>
+            )}
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</BaseLayout>
