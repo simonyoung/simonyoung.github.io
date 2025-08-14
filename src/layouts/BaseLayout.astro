@@ -18,14 +18,16 @@ const { title = "Simon Young", description = "Personal website and blog" } = Ast
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
-        <meta name="description" content={description} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#1a2434" />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
         <ViewTransitions />
     </head>
-    <body class="min-h-screen flex flex-col">
+    <body class="min-h-screen flex flex-col bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
         <div class="flex flex-col min-h-screen">
             <Header />
             <main class="flex-grow">

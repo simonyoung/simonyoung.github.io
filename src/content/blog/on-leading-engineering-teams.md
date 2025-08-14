@@ -1,8 +1,8 @@
 ---
-title: 'On Leading Engineering Teams'
-author: 'Simon Young'
-date: 'December 10, 2018'
-layout: ../../layouts/BlogPostLayout.astro
+title: "On Leading Engineering Teams"
+author: "Simon Young"
+date: 2018-12-10
+description: "Principles and practices for building high-performing software engineering teams."
 ---
 I have been involved in leading software engineering teams for more than a decade — first as a technical lead, and then as a member of senior management teams where I have been responsible for software teams of different sizes using very different technology stacks. I am now responsible for leading a large and growing software engineering team as well as being responsible for our overall e-commerce platform architecture.
 

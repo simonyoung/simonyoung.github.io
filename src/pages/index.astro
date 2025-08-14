@@ -1,5 +1,25 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from 'astro:content';
+
+// Get 3 most recent posts
+// @ts-ignore - types are generated after content collections are discovered
+const recent = (await (getCollection as any)('blog'))
+import { getCollection, CollectionEntry } from 'astro:content';
+
+// Get 3 most recent posts
+const recent = (await getCollection('blog'))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+import { getCollection, CollectionEntry } from 'astro:content';
+
+// Get 3 most recent posts
+const recent = (await getCollection('blog'))
+import { getCollection, CollectionEntry } from 'astro:content';
+
+// Get 3 most recent posts
+const recent = (await getCollection('blog'))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3) as CollectionEntry<'blog'>[];
 ---
 
 <BaseLayout title="Simon Young | Software Engineering Leader">
@@ -10,7 +30,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         
         <ul class="mt-6 space-y-2">
           <li>More than 25 years of experience in all aspects of software engineering and architecture</li>
-          <li>Senior Director of Engineering for Shopper Technology at the LEGO Group, leading a 100+ person software engineering team</li>
+          <li>Vice President for Shopper Technology at the LEGO Group, leading a 100+ person software engineering team</li>
         </ul>
         
         <p class="mt-6">Find me on <a href="https://www.linkedin.com/in/simonyounguk/" class="slate-link">LinkedIn</a> 🤘</p>
@@ -19,20 +39,17 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     
     <section aria-labelledby="articles-heading" class="mb-8">
       <h2 id="articles-heading" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">Recent Articles</h2>
-      <ul class="space-y-4">
-        <li class="border-b border-gray-100 dark:border-gray-800 pb-4">
-          <a href="/blog/leadership-with-shared-purpose" class="group">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Leadership with Shared Purpose</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">September 30, 2020</p>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {recent.map((post: any) => (
+          <a href={`/blog/${post.slug}/`} class="group rounded-xl border border-gray-200 dark:border-gray-800 p-5 hover:shadow-md transition-shadow">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">{post.data.title}</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+              {new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+            </p>
+            {post.data.description && <p class="mt-2 text-gray-600 dark:text-gray-300 line-clamp-2">{post.data.description}</p>}
           </a>
-        </li>
-        <li class="border-b border-gray-100 dark:border-gray-800 pb-4">
-          <a href="/blog/on-leading-engineering-teams" class="group">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">On Leading Engineering Teams</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">December 10, 2018</p>
-          </a>
-        </li>
-      </ul>
+        ))}
+      </div>
       <div class="mt-8">
         <a href="/blog" class="slate-link inline-flex items-center">
           View all articles
