@@ -1,8 +1,8 @@
 ---
-title: 'Leadership with Shared Purpose'
-author: 'Simon Young'
-date: 'September 30, 2020'
-layout: ../../layouts/BlogPostLayout.astro
+title: "Leadership with Shared Purpose"
+author: "Simon Young"
+date: 2020-09-30
+description: "Creating a shared purpose and leadership pillars to enable high-performing engineering teams."
 ---
 
 As the team I lead grows substantially, my role has changed during 2019 and the first half of 2020 from leading engineers to increasingly leading leaders who lead engineers.

@@ -1,5 +1,11 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection, type CollectionEntry } from 'astro:content';
+
+// Get 3 most recent posts
+const recent: CollectionEntry<'blog'>[] = (await getCollection('blog'))
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 3);
 ---
 
 <BaseLayout title="Simon Young | Software Engineering Leader">
@@ -20,18 +26,19 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <section aria-labelledby="articles-heading" class="mb-8">
       <h2 id="articles-heading" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-white mb-4">Recent Articles</h2>
       <ul class="space-y-4">
-        <li class="border-b border-gray-100 dark:border-gray-800 pb-4">
-          <a href="/blog/leadership-with-shared-purpose" class="group">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">Leadership with Shared Purpose</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">September 30, 2020</p>
-          </a>
-        </li>
-        <li class="border-b border-gray-100 dark:border-gray-800 pb-4">
-          <a href="/blog/on-leading-engineering-teams" class="group">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">On Leading Engineering Teams</h3>
-            <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">December 10, 2018</p>
-          </a>
-        </li>
+        {recent.map((post) => (
+          <li class="border-b border-gray-100 dark:border-gray-800 pb-4">
+            <a href={`/blog/${post.slug}/`} class="group">
+              <h3 class="text-lg font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400">{post.data.title}</h3>
+              <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">
+                {new Date(post.data.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </p>
+              {post.data.description && (
+                <p class="text-gray-600 dark:text-gray-300 mt-2 line-clamp-2">{post.data.description}</p>
+              )}
+            </a>
+          </li>
+        ))}
       </ul>
       <div class="mt-8">
         <a href="/blog" class="slate-link inline-flex items-center">
