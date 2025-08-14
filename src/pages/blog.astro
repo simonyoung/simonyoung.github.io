@@ -4,7 +4,6 @@ import { getCollection } from "astro:content";
 
 // @ts-ignore - types are generated after content collections are discovered
 const posts = (await (getCollection as any)('blog'))
-  .sort((a: any, b: any) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 interface BlogPost {
   slug: string;
   data: {
