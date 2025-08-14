@@ -2,26 +2,27 @@
 import BaseLayout from './BaseLayout.astro';
 import { format } from 'date-fns';
 
-const { frontmatter } = Astro.props;
+// Accept either legacy `frontmatter` (from page MD) or `postData` (from content collections)
+const { frontmatter, postData } = Astro.props as any;
+const data = frontmatter ?? postData ?? {};
 
-const formattedDate = frontmatter.date 
-  ? format(new Date(frontmatter.date), 'MMMM d, yyyy')
+const formattedDate = data.date 
+  ? format(new Date(data.date), 'MMMM d, yyyy')
   : '';
 ---
-
-<BaseLayout title={`${frontmatter.title} | Simon Young`} description={frontmatter.description}>
+<BaseLayout title={`${data.title} | Simon Young`} description={data.description}>
   <article class="slate-container py-10">
     <header class="mb-8">
       <a href="/blog" class="slate-link text-sm font-medium mb-4 inline-block">
         ← Back to Blog
       </a>
-      <h1 class="slate-title mb-3">{frontmatter.title}</h1>
+      <h1 class="slate-title mb-3">{data.title}</h1>
       <div class="flex items-center text-gray-600 dark:text-gray-400">
-        {frontmatter.author && <span class="mr-2">{frontmatter.author}</span>}
+        {data.author && <span class="mr-2">{data.author}</span>}
         {formattedDate && (
           <>
             <span class="mx-2">•</span>
-            <time datetime={frontmatter.date}>{formattedDate}</time>
+            <time datetime={data.date}>{formattedDate}</time>
           </>
         )}
       </div>
